@@ -1,0 +1,25 @@
+{
+  "client": {
+    "name": "TBD",
+    "slug": "tbd",
+    "primary_contact": {
+      "name": "TBD",
+      "email": "tbd@example.com"
+    }
+  },
+  "business": {
+    "description": "TBD",
+    "audience": "TBD",
+    "offer": "TBD"
+  },
+  "website": {
+    "goal": "TBD",
+    "pages": [
+      {
+        "slug": "/",
+        "title": "Home",
+        "purpose": "TBD"
+      }
+    ]
+  }
+}

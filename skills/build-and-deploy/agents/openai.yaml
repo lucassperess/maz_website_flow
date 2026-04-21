@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build and Deploy"
+  short_description: "Build client sites and deploy to Vercel"
+  default_prompt: "Use $build-and-deploy to update a client site from client-data and deploy it through Vercel."

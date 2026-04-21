@@ -1,0 +1,4 @@
+interface:
+  display_name: "Intake to Repo"
+  short_description: "Create client repos from onboarding folders"
+  default_prompt: "Use $intake-to-repo to validate a client intake folder and create the standardized GitHub repository."

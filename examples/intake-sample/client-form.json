@@ -1,0 +1,37 @@
+{
+  "client": {
+    "name": "Cliente Exemplo",
+    "slug": "cliente-exemplo",
+    "primary_contact": {
+      "name": "Pessoa Responsavel",
+      "email": "contato@example.com",
+      "phone": "+55 11 99999-9999"
+    }
+  },
+  "business": {
+    "description": "Empresa ficticia usada para validar o fluxo de MVP.",
+    "audience": "Pequenas empresas que precisam de presenca digital.",
+    "offer": "Criacao de site institucional com formulario de contato.",
+    "differentiators": [
+      "Atendimento rapido",
+      "Conteudo objetivo",
+      "Publicacao em Vercel"
+    ]
+  },
+  "website": {
+    "goal": "Gerar contatos comerciais qualificados.",
+    "domain": "cliente-exemplo.com.br",
+    "pages": [
+      {
+        "slug": "/",
+        "title": "Inicio",
+        "purpose": "Apresentar a empresa e chamada principal"
+      },
+      {
+        "slug": "/contato",
+        "title": "Contato",
+        "purpose": "Permitir contato comercial"
+      }
+    ]
+  }
+}
