@@ -54,6 +54,44 @@ Ela deve:
 7. Aprovar publicacao em producao.
 8. Usar os logs como historico do projeto.
 
+## Casos comuns do dia a dia
+
+### Cliente organizado
+
+O cliente envia formulario, textos, logo, imagens e objetivo claro. Esse e o melhor caso: o fluxo pode ir direto para repositorio, preview e aprovacao.
+
+### Cliente incompleto
+
+O cliente envia poucas informacoes ou assets ruins. A IA nao deve completar fatos importantes por conta propria. Ela deve gerar uma lista do que falta e, no maximo, montar uma versao provisoria claramente marcada como rascunho.
+
+### Cliente sem marca pronta
+
+Quando nao existe logo, paleta ou fotos boas, a IA pode propor uma direcao visual inicial. Essa proposta precisa ser aprovada antes de virar identidade do site.
+
+### Landing page
+
+Usar quando o cliente tem uma oferta principal e quer gerar contato, leads ou vendas. O foco e clareza, chamada para acao e evitar promessas exageradas.
+
+### Site institucional simples
+
+Usar quando o cliente precisa explicar quem e, o que faz, para quem atende e como entrar em contato. E o formato mais comum para empresas locais e prestadores de servico.
+
+### Catalogo
+
+Usar quando existem varios produtos, servicos, planos, unidades ou categorias. O cuidado principal e nao inventar detalhes de itens incompletos.
+
+### Ajuste antes de publicar
+
+Se Lucas ou cliente reprovar algo no preview, a IA faz ajuste, cria novo log e gera novo preview. Producao continua bloqueada ate nova aprovacao.
+
+### Alteracao depois do site no ar
+
+Trocas de telefone, texto, imagens, links e ofertas seguem o mesmo principio: preview primeiro, log da mudanca, aprovacao do Lucas e producao depois.
+
+### Problema encontrado no review semanal
+
+Quando a revisao semanal encontrar algo, isso vira uma pendencia objetiva. A IA pode corrigir, mas a correcao tambem passa por preview antes de producao se afetar o site publicado.
+
 ## O que o socio precisa conferir
 
 Antes de iniciar:
@@ -85,6 +123,10 @@ A organizacao GitHub da empresa Maz sera criada posteriormente. Enquanto isso, o
 Inicialmente, a Vercel usara uma conta central da empresa para varios clientes.
 
 Toda alteracao relevante deve ir primeiro para preview. Producao so deve ser atualizada quando Lucas aprovar.
+
+### Ferramentas
+
+As ferramentas existem para apoiar o fluxo, nao para definir o produto. Neste momento, o mais importante e garantir que cada caso de cliente tenha entrada, decisao, preview, aprovacao, publicacao e memoria registrada.
 
 ### Tipo de site
 
@@ -132,5 +174,5 @@ O MVP funcionou quando conseguirmos repetir o processo para 3 clientes:
 
 1. Criar a organizacao GitHub da Maz.
 2. Conectar a conta central da Vercel da empresa.
-3. Definir os tokens e permissoes minimas.
+3. Definir quem pode criar repositorios, publicar previews e aprovar producao.
 4. Criar o primeiro projeto piloto com cliente ficticio.

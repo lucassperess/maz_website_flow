@@ -23,19 +23,22 @@ Fora do MVP inicial:
 4. Lucas aprova deploy em producao.
 5. O primeiro template de site nao sera unico. A IA deve escolher entre institucional simples, landing page, catalogo ou outro formato adequado ao caso.
 
-## 3) Arquitetura de alto nivel
+## 3) Visao operacional do fluxo
 
-Componentes:
-1. `Skill A - intake-to-repo`
-2. `Skill B - build-and-deploy`
-3. `Template de repositorio de cliente`
-4. `Scheduler semanal de review`
+O MVP deve ser pensado como uma linha de producao assistida por IA, nao como uma stack fechada.
 
-Stack inicial sugerida:
-1. Claude Code Max, usando Opus como default para tarefas de engenharia.
-2. GitHub API ou GitHub CLI para criacao de repo, commits, PRs e labels.
-3. Vercel API ou Vercel CLI para projeto, envs, deploy e aliases de dominio.
-4. GitHub Actions para CI e review semanal.
+Etapas do fluxo:
+1. Captacao: cliente envia formulario, contexto do negocio e assets.
+2. Triagem: Maz verifica se existe informacao suficiente para iniciar.
+3. Organizacao: IA cria o repositorio privado do cliente e separa dados, site e logs.
+4. Producao: IA escolhe o tipo de site e cria a primeira versao.
+5. Preview: Maz revisa o link antes de envolver producao.
+6. Ajustes: IA aplica correcoes de conteudo, design ou estrutura.
+7. Aprovacao: Lucas aprova ou bloqueia publicacao em producao.
+8. Publicacao: site vai ao ar.
+9. Manutencao: logs, revisoes semanais e alteracoes futuras mantem memoria do projeto.
+
+Ferramentas como Claude Code, GitHub, Vercel e GitHub Actions entram como meios para executar essas etapas. A documentacao do MVP deve priorizar o comportamento esperado do processo.
 
 ## 4) Contrato de entrada (pasta 1 - onboarding)
 
@@ -68,7 +71,126 @@ Regras minimas:
 3. Arquivos ausentes devem gerar aviso em `logs/intake-report.md`.
 4. Dados sensiveis nao devem ser versionados.
 
-## 5) Estrutura padrao do repo do cliente
+## 5) Casos cobertos pelo fluxo
+
+### Caso A - Cliente chega com material completo
+
+Entrada:
+1. Formulario preenchido.
+2. Logo, cores, imagens e textos principais.
+3. Objetivo do site claro.
+
+Fluxo:
+1. Skill A valida a pasta e cria o repositorio privado.
+2. Skill B escolhe o tipo de site.
+3. IA cria preview.
+4. Lucas revisa e aprova producao.
+
+Resultado esperado:
+1. Site publicado.
+2. Logs completos.
+3. Pendencias zeradas ou nao bloqueantes.
+
+### Caso B - Cliente chega com informacoes incompletas
+
+Entrada:
+1. Faltam textos, imagens, logo ou clareza sobre oferta.
+
+Fluxo:
+1. Skill A cria relatorio de pendencias.
+2. Repositorio pode ser criado, mas o projeto fica marcado como incompleto.
+3. Skill B pode gerar uma versao provisoria apenas se os riscos estiverem claros.
+
+Resultado esperado:
+1. Lista objetiva do que precisa ser pedido ao cliente.
+2. Nenhum dado inventado tratado como verdade.
+3. Preview so avanca se a Maz aceitar as limitacoes.
+
+### Caso C - Cliente nao tem identidade visual
+
+Entrada:
+1. Cliente tem informacoes de negocio, mas nao tem logo, cores ou imagens boas.
+
+Fluxo:
+1. Skill A registra ausencia de identidade visual.
+2. Skill B cria direcao visual provisoria e marca como proposta.
+3. Preview deve deixar claro o que e decisao da IA e o que veio do cliente.
+
+Resultado esperado:
+1. Site pode avancar como proposta inicial.
+2. Lucas ou cliente aprova/substitui a direcao visual antes da producao final.
+
+### Caso D - Cliente quer landing page de campanha
+
+Entrada:
+1. Uma oferta clara, publico-alvo e chamada para acao.
+
+Fluxo:
+1. Skill B seleciona `landing-page`.
+2. IA prioriza conversao, dobra inicial, prova, beneficios e contato.
+3. Preview e revisado para evitar promessas nao validadas.
+
+Resultado esperado:
+1. Landing page publicada apos aprovacao.
+2. Log registra oferta, CTA e riscos de copy.
+
+### Caso E - Cliente precisa de catalogo
+
+Entrada:
+1. Multiplos produtos, servicos, unidades ou categorias.
+
+Fluxo:
+1. Skill B seleciona `catalog`.
+2. IA estrutura listagem, detalhe e navegacao.
+3. Dados incompletos de produtos ficam como pendencia.
+
+Resultado esperado:
+1. Catalogo funcional em preview.
+2. Itens incompletos nao sao inventados.
+
+### Caso F - Ajuste apos preview
+
+Entrada:
+1. Lucas ou cliente pede mudancas antes da producao.
+
+Fluxo:
+1. IA aplica alteracao no site.
+2. Cria novo log explicando mudanca e motivo.
+3. Gera novo preview.
+
+Resultado esperado:
+1. Historico claro de iteracoes.
+2. Producao continua bloqueada ate aprovacao.
+
+### Caso G - Alteracao depois do site no ar
+
+Entrada:
+1. Cliente pede troca de texto, imagem, secao, telefone, link ou oferta.
+
+Fluxo:
+1. IA altera em branch/preview.
+2. Logs registram pedido, arquivo alterado, risco e rollback.
+3. Lucas aprova producao.
+
+Resultado esperado:
+1. Site atualizado sem perder historico.
+2. Alteracao pode ser revertida com contexto.
+
+### Caso H - Review semanal encontra problema
+
+Entrada:
+1. Revisao automatica identifica bug, dependencia quebrada, texto suspeito ou risco visual.
+
+Fluxo:
+1. Sistema abre issue ou registro de review.
+2. IA propoe correcao.
+3. Correcao segue preview antes de producao.
+
+Resultado esperado:
+1. Problemas recorrentes ficam documentados.
+2. Projeto nao depende apenas de memoria humana.
+
+## 6) Estrutura padrao do repo do cliente
 
 Template de repositorio:
 
@@ -101,7 +223,7 @@ Padroes de log:
 2. `CHANGELOG_AI.md` recebe resumo cumulativo.
 3. Formato do log: contexto, mudanca, motivo, checks, risco e rollback.
 
-## 6) Skill A - intake-to-repo
+## 7) Skill A - intake-to-repo
 
 Responsabilidades:
 1. Ler pasta `incoming/<cliente-id>`.
@@ -117,7 +239,7 @@ Saidas esperadas:
 2. Relatorio de validacao de intake.
 3. Lista de pendencias de dados.
 
-## 7) Skill B - build-and-deploy
+## 8) Skill B - build-and-deploy
 
 Responsabilidades:
 1. Ler `client-data/`.
@@ -132,7 +254,7 @@ Politica de modelos:
 1. Opus para arquitetura, codigo, refatoracoes e depuracao.
 2. Modelo mais barato apenas para ajustes finos de texto/copy quando aprovado.
 
-## 8) Review semanal automatizado
+## 9) Review semanal automatizado
 
 Objetivo: detectar bugs, vulnerabilidades e regressoes.
 
@@ -142,13 +264,13 @@ Execucao:
 3. Abrir issue ou PR com findings e prioridade.
 4. Registrar resumo em `logs/entries/<data>-weekly-review.md`.
 
-## 9) Seguranca e operacao
+## 10) Seguranca e operacao
 
-Segredos necessarios:
-1. `GITHUB_TOKEN` com escopo minimo para repositorios privados da Maz.
-2. `VERCEL_TOKEN` da conta central da empresa.
-3. `VERCEL_TEAM_ID` quando a conta central estiver em um time.
-4. `VERCEL_PROJECT_ID` quando o projeto ja existir, ou criacao dinamica por cliente.
+Segredos necessarios devem ser definidos apenas quando o fluxo for conectado a contas reais. No nivel de processo, o importante e:
+1. Somente pessoas autorizadas podem criar repositorios de cliente.
+2. Somente pessoas autorizadas podem publicar em producao.
+3. Tokens e credenciais nunca entram em pastas de cliente nem em logs.
+4. Cada cliente deve ter separacao clara entre preview e producao.
 
 Regras:
 1. Nunca versionar tokens.
@@ -156,7 +278,7 @@ Regras:
 3. Isolar ambientes `preview` e `production`.
 4. Publicar em producao apenas com aprovacao do Lucas.
 
-## 10) Roadmap de implementacao
+## 11) Roadmap de implementacao
 
 Fase 1 (fundacao):
 1. Criar template de repo cliente.
@@ -171,16 +293,16 @@ Fase 2 (Skill A):
 Fase 3 (Skill B):
 1. Selecao de tipo de site.
 2. Geracao de site base.
-3. Integracao API/CLI Vercel.
-4. Deploy preview e registro de alteracoes.
-5. Deploy producao apenas apos aprovacao.
+3. Criacao de preview.
+4. Registro de alteracoes.
+5. Publicacao em producao apenas apos aprovacao.
 
 Fase 4 (review semanal):
 1. Workflow agendado.
 2. Regras de severidade.
 3. Abertura automatica de issue/PR.
 
-## 11) Definition of Done (MVP)
+## 12) Definition of Done (MVP)
 
 Considerar MVP pronto quando:
 1. Um cliente novo entra via pasta padrao e gera repo privado automaticamente.
