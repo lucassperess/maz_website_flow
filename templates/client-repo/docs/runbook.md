@@ -18,4 +18,12 @@ Vercel project: TBD
 
 ## Approval
 
-Production deploy approval owner: TBD
+Production deploy approval owner: Lucas
+
+## Repository Policy
+
+Client repositories must remain private.
+
+## Vercel Policy
+
+Use the central Maz Vercel account initially. Deploy preview first, then promote to production only after Lucas approval.

@@ -12,7 +12,7 @@ Transform an onboarding folder into a ready-to-work client repository.
 ## Required Inputs
 
 1. Intake folder path, usually `incoming/<client-id>/`.
-2. GitHub owner/org, default `maz`.
+2. GitHub owner/org, default future Maz company organization.
 3. Target repository slug, default `client-<client-id>`.
 
 ## Workflow
@@ -41,7 +41,7 @@ Transform an onboarding folder into a ready-to-work client repository.
 1. Never invent missing client facts. Mark them as pending in the intake report.
 2. Never commit secrets, API keys, credentials, private documents not intended for the site, or raw payment data.
 3. Preserve original asset filenames where practical. If renaming is needed, record the mapping in the intake log.
-4. Prefer a private GitHub repository until the client is approved for public exposure.
+4. Always create client repositories as private.
 5. Use one initial commit for the generated structure and copied intake data.
 
 ## Scripts

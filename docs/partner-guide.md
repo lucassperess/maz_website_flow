@@ -76,11 +76,23 @@ Antes de publicar:
 
 ### GitHub
 
-Repositorios de clientes devem comecar privados. Isso evita exposicao acidental de dados, assets ou rascunhos.
+Repositorios de clientes devem ser sempre privados. Isso evita exposicao acidental de dados, assets ou rascunhos.
+
+A organizacao GitHub da empresa Maz sera criada posteriormente. Enquanto isso, o projeto pode ser testado em conta pessoal ou repositorio temporario.
 
 ### Vercel
 
-Toda alteracao relevante deve ir primeiro para preview. Producao so deve ser atualizada quando alguem aprovar.
+Inicialmente, a Vercel usara uma conta central da empresa para varios clientes.
+
+Toda alteracao relevante deve ir primeiro para preview. Producao so deve ser atualizada quando Lucas aprovar.
+
+### Tipo de site
+
+O primeiro template nao precisa ser sempre igual. A IA deve escolher o formato com base no cliente e justificar a escolha:
+1. Institucional simples.
+2. Landing page.
+3. Catalogo.
+4. Outro formato adequado ao objetivo do cliente.
 
 ### Logs
 
@@ -116,10 +128,9 @@ O MVP funcionou quando conseguirmos repetir o processo para 3 clientes:
 4. Logs atualizados.
 5. Revisao semanal funcionando.
 
-## Perguntas que ainda precisamos fechar
+## Pontos que ainda precisam ser preparados
 
-1. Qual sera o nome exato da organizacao no GitHub: `maz`, outra org, ou conta pessoal?
-2. Os repositorios dos clientes serao sempre privados?
-3. A Vercel sera uma conta da empresa ou conta por cliente?
-4. Quem aprova deploy em producao?
-5. Qual modelo de site inicial queremos usar: institucional simples, landing page, ou catalogo de servicos?
+1. Criar a organizacao GitHub da Maz.
+2. Conectar a conta central da Vercel da empresa.
+3. Definir os tokens e permissoes minimas.
+4. Criar o primeiro projeto piloto com cliente ficticio.
